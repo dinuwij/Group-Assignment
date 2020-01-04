@@ -24,8 +24,8 @@ UserDailyAggregation<-read_sas("C:/Users/dwijayaweera/Documents/Open source prog
 
 #Treating null values of ActualInternetSportsGamblingActivity with zero presuming that Null denotes 0 as rest of the data is available
 
-#replace_na(ActualInternetSportsGamblingActivity, list(FOFirstActiveDate = 0))
-#replace_na(ActualInternetSportsGamblingActivity, list(as.Date.numeric(FOLastActiveDate = 0, origin = "2005-01-01")))
+replace_na(ActualInternetSportsGamblingActivity, list(FOFirstActiveDate = 0))
+replace_na(ActualInternetSportsGamblingActivity, list(as.Date.numeric(FOLastActiveDate = 0, origin = "2005-01-01")))
 
 ActualInternetSportsGamblingActivity[is.na(ActualInternetSportsGamblingActivity)] <- 0
 
@@ -39,11 +39,12 @@ Demographics$FirstCa<-ymd(Demographics$FirstCa)
 Demographics$FirstGa<-ymd(Demographics$FirstGa)
 Demographics$FirstPo<-ymd(Demographics$FirstPo)
 
-#Demographics$FirstCa<-as.numeric(as.character(Demographics$FirstCa))
+Demographics$FirstCa<-as.numeric(as.character(Demographics$FirstCa))
 
-#Merging of the data
-
-
+#Merging of the data merge(x, y, by = "k1")
+datam_v1<-merge(Demographics,UserDailyAggregation, by="UserID")
+datam_v2<-merge(datam_v1,PokerChipConversions, by="UserID")
+datamart_final<-merge(datam_v2,ActualInternetSportsGamblingActivity, by.x="UserID", by.y="USERID")
 
 
 

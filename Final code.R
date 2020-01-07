@@ -236,6 +236,10 @@ ProductUserPref <- UserDailyAggregation %>% group_by(UserID,ProductID)  %>%
 ProductUserPref <- spread(ProductUserPref,ProductID,BetsOnProducts,fill=0)
 ProductUserPref["3"] = 0
 ProductUserPref <- ProductUserPref[,c(1,2,3,9,4,5,6,7,8)]
+names(ProductUserPref) = c('UserID','Sports_BookFO','Sports_BookLA',
+                           'Poker_BossMedia','Casino_BossMedia',
+                           'Supertoto','Games_VS','Games_BWIN','Casino_Charwell')
+
 ProductUserPref
 
 #RatiosProdcuts for UserDailyAggregationID 
@@ -273,7 +277,9 @@ ActualSportsGambling$TotalBets<-ActualSportsGambling$FOTotalBets + ActualSportsG
 ActualSportsGambling$ACTIVECUSTOMER<- ifelse((ActualSportsGambling$FOTotalDaysActive>1)|(ActualSportsGambling$LATotalDaysActive>1),1,0)
 
 #Marking idle customers
-ActualSportsGambling$IDLECUSTOMER<- ifelse(is.na(ActualSportsGambling$LAFirstActiveDate),1,0)
+ActualSportsGambling$LAIDLECUSTOMER<- ifelse(is.na(ActualSportsGambling$LAFirstActiveDate),1,0)
+ActualSportsGambling$FOIDLECUSTOMER<- ifelse(is.na(ActualSportsGambling$FOFirstActiveDate),1,0)
+unique(ActualSportsGambling$LAFirstActiveDate)
 
 #Marking loyal customers if they are active for or more than 60 days
 ActualSportsGambling$LOYALCUSTOMER<-ifelse(ActualSportsGambling$FOTotalDaysActive>=60,1,0)
@@ -353,3 +359,5 @@ for (i in colnames(datamart_final)){
 }
 
 save(datamart_final, file = "datamart_final.Rdata")
+
+

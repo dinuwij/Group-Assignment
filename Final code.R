@@ -16,6 +16,10 @@ library(shiny)
 library(hms)
 if (!require("DT")) install.packages('DT')
 library(datasets)
+install.packages("rmarkdown")
+library(rmarkdown)
+library(ggplot2)
+
 
 #Cleaning Environment to make sure no errors came other objects in the environment:
 rm(list = ls())
@@ -204,8 +208,12 @@ Poker_Final = merge(Poker_Final, Poker_Day, 'UserID')
 #We check if we have the same number of rows as we had of user ID at in the original dataset.
 uniqueN(Poker_Final$UserID) == uniqueN(PokerChipConversions$UserID)
 
+#We add a balance column equal to Buy minus Sell:
+Poker_Final$Balance = Poker_Final$Total_Buy - Poker_Final$Total_Sell
+
 #We add a flag column to know if people are in the dataset (to identifiy in the merge later):
 Poker_Final$IsInPokerFinal = 1
+
 
 
 
@@ -344,3 +352,4 @@ for (i in colnames(datamart_final)){
   print(sum(is.na(datamart_final[i])))
 }
 
+save(datamart_final, file = "datamart_final.Rdata")

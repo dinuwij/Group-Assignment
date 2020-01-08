@@ -1,5 +1,5 @@
 # Marketing Insights on Online Sports Gambling   
-This is the the group assignment for the Open Source Programming module. This project is created by Lopez Zeron Alejandro, Wijayaweera Dinu and Pavot Sebastien for the final group project.
+This is a group assignment for the Open Source Programming module. This project is created by Lopez Zeron Alejandro, Wijayaweera Dinu and Pavot Sebastien for the final group project.
 
 We have created several outputs in this project.
 

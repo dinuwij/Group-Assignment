@@ -8,15 +8,15 @@ library(stringr)
 library(tidyr)
 library(haven)
 library(dplyr)
-install.packages("haven")
+#install.packages("haven")
 library(haven)
 library(ggplot2)
-install.packages("shiny")
+#install.packages("shiny")
 library(shiny)
 library(hms)
 if (!require("DT")) install.packages('DT')
 library(datasets)
-install.packages("rmarkdown")
+#install.packages("rmarkdown")
 library(rmarkdown)
 library(ggplot2)
 
@@ -301,7 +301,7 @@ ActualSportsGambling$LABetsPerVisit<-ActualSportsGambling$LATotalBets/ActualSpor
 
 #Reading languages and merging with language ID
 
-ActualSportsGambling<-merge(ActualSportsGambling,languages, by.x="LANGUAGE", by.y="Language")
+ActualSportsGambling<-merge(ActualSportsGambling,Languages, by.x="LANGUAGE", by.y="Language")
 
 #Reading in country and merging with country ID
 
@@ -353,11 +353,13 @@ for (i in colnames(datamart_final)) {
   }
 }
 
+#We check if there's still missing value
 uniqueN(datamart_final$UserID)
 for (i in colnames(datamart_final)){
   print(sum(is.na(datamart_final[i])))
 }
 
+#And we same the datamart in a R file to be able to use it with Rmarkdown and Shiny dashboard.
 save(datamart_final, file = "datamart_final.Rdata")
 
 

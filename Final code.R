@@ -25,18 +25,18 @@ library(ggplot2)
 rm(list = ls())
 
 #Reading in AnalyticDataInternetGambling 
-ActualSportsGambling<-read_sas("C:/Users/spavot/Documents/GitHub/Group-Assignment/AnalyticDataInternetGambling.sas7bdat")
+ActualSportsGambling<-read_sas("C:/Users/alopezzeron/Desktop/Fall_2019/Business_Analytics_Tools_OS/Group_Assignment/Group-Assignment/AnalyticDataInternetGambling.sas7bdat")
 
 #Reading in RawDataIIUserDailyAggregation
-UserDailyAggregation<-read_sas("C:/Users/spavot/Documents/GitHub/Group-Assignment/RawDataIIUserDailyAggregation.sas7bdat")
+UserDailyAggregation<-read_sas("C:/Users/alopezzeron/Desktop/Fall_2019/Business_Analytics_Tools_OS/Group_Assignment/Group-Assignment/RawDataIIUserDailyAggregation.sas7bdat")
 
 
 #Reading in RawDataIDemographics 
-Demographics<-read_sas("C:/Users/spavot/Documents/GitHub/Group-Assignment/RawDataIDemographics.sas7bdat")
+Demographics<-read_sas("C:/Users/alopezzeron/Desktop/Fall_2019/Business_Analytics_Tools_OS/Group_Assignment/Group-Assignment/RawDataIDemographics.sas7bdat")
 
 
 #Reading in RawDataIIIPokerChipConversions 
-PokerChipConversions<-read_sas("C:/Users/spavot/Documents/GitHub/Group-Assignment/RawDataIIIPokerChipConversions.sas7bdat")
+PokerChipConversions<-read_sas("C:/Users/alopezzeron/Desktop/Fall_2019/Business_Analytics_Tools_OS/Group_Assignment/Group-Assignment/RawDataIIIPokerChipConversions.sas7bdat")
 
 
 
@@ -85,9 +85,9 @@ Demographics$AlreadyPlayPoker[Demographics$FirstSp == "2099-12-12"] = "No"
 #To fix country, language & applicationID, we import 3 excels files corresponding
 #to the 3 appendix to transform these numeric values into character with meaning
 
-Countries<-read_excel("C:/Users/spavot/Documents/GitHub/Group-Assignment/Country.xlsx")
-Languages<-read_excel("C:/Users/spavot/Documents/GitHub/Group-Assignment/Language.xlsx")
-ApplicationID<-read_excel("C:/Users/spavot/Documents/GitHub/Group-Assignment/ApplicationID.xlsx")
+Countries<-read_excel("C:/Users/alopezzeron/Desktop/Fall_2019/Business_Analytics_Tools_OS/Group_Assignment/Group-Assignment/Country.xlsx")
+Languages<-read_excel("C:/Users/alopezzeron/Desktop/Fall_2019/Business_Analytics_Tools_OS/Group_Assignment/Group-Assignment/Language.xlsx")
+ApplicationID<-read_excel("C:/Users/alopezzeron/Desktop/Fall_2019/Business_Analytics_Tools_OS/Group_Assignment/Group-Assignment/ApplicationID.xlsx")
 
 #Now we will merge these dataset with the demographic based on their respective keys (country for country, language for languages, applicationID for ApplicationID)
 
@@ -327,7 +327,8 @@ ActualSportsGambling[is.na(ActualSportsGambling)] <- 0
 #demographics dataset
 ActualSportsGambling$LANGUAGE = ActualSportsGambling$CountryName =
   ActualSportsGambling$COUNTRY = ActualSportsGambling$GENDER =
-  ActualSportsGambling$GENDERCAT = ActualSportsGambling$RegistrationDate = NULL
+  ActualSportsGambling$GENDERCAT = ActualSportsGambling$RegistrationDate = 
+  ActualSportsGambling$`Language Description`= NULL
 
 #We add a flag column to know if people are in the dataset (to identifiy in the merge later):
 ActualSportsGambling$IsInActualSportGambling = 1

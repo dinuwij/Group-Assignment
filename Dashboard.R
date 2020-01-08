@@ -2,12 +2,13 @@
 library(shiny)
 #install.packages("shinydashboard", dependencies=TRUE, INSTALL_opts = c('--no-lock'))
 library(shinydashboard)
+library(ggplot2)
 
 rm(list = ls())
 
 #Then we load the file we need to print the dashboard
 
-load(file = 'C:/Users/spavot/Documents/GitHub/Group-Assignment/datamart_final.Rdata')
+load(file = 'C:/Users/alopezzeron/Desktop/Fall_2019/Business_Analytics_Tools_OS/Group_Assignment/Group-Assignment/datamart_final.Rdata')
 
 countrynamesort = unique(datamart_final$CountryName[datamart_final$IsInActualSportGambling ==1])
 countrynamesort = sort(countrynamesort)
